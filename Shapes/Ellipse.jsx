@@ -34,37 +34,20 @@ var Ellipse = function(color, x, y, width, height){
 	app.foregroundColor = color;
 
 	// =======================================================
-	var idMk = charIDToTypeID( "Mk  " );
-		var desc9 = new ActionDescriptor();
-		var idnull = charIDToTypeID( "null" );
-			var ref7 = new ActionReference();
-			var idcontentLayer = stringIDToTypeID( "contentLayer" );
-			ref7.putClass( idcontentLayer );
-		desc9.putReference( idnull, ref7 );
-		var idUsng = charIDToTypeID( "Usng" );
-			var idType = charIDToTypeID( "Type" );
-			var desc10 = new ActionDescriptor();
-			var idsolidColorLayer = stringIDToTypeID( "solidColorLayer" );
-			desc10.putClass( idType, idsolidColorLayer );
-			var idShp = charIDToTypeID( "Shp " );
-				var desc11 = new ActionDescriptor();
-				var idTop = charIDToTypeID( "Top " );
-				var idPxl = charIDToTypeID( "#Pxl" );
-						desc11.putUnitDouble( idTop, idPxl, y );
-				var idLeft = charIDToTypeID( "Left" );
-				var idPxl = charIDToTypeID( "#Pxl" );
-						desc11.putUnitDouble( idLeft, idPxl, x );
-				var idBtom = charIDToTypeID( "Btom" );
-				var idPxl = charIDToTypeID( "#Pxl" );
-						desc11.putUnitDouble( idBtom, idPxl, y+height );
-				var idRght = charIDToTypeID( "Rght" );
-				var idPxl = charIDToTypeID( "#Pxl" );
-						desc11.putUnitDouble( idRght, idPxl, x+width );
-			var idElps = charIDToTypeID( "Elps" );
-			desc10.putObject( idShp, idElps, desc11 );
-		var idcontentLayer = stringIDToTypeID( "contentLayer" );
-		desc9.putObject( idUsng, idcontentLayer, desc10 );
-	executeAction( idMk, desc9, DialogModes.NO );
+	var desc1 = new ActionDescriptor(),
+	    desc2 = new ActionDescriptor(),
+	    desc3 = new ActionDescriptor(),
+	    ref1 = new ActionReference();
+	ref1.putClass(stringIDToTypeID('contentLayer'));
+	desc1.putReference(charIDToTypeID('null'), ref1);
+	desc2.putClass(charIDToTypeID('Type'), stringIDToTypeID('solidColorLayer'));
+	desc3.putUnitDouble(charIDToTypeID('Top '), charIDToTypeID('#Pxl'), y);
+	desc3.putUnitDouble(charIDToTypeID('Left'), charIDToTypeID('#Pxl'), x);
+	desc3.putUnitDouble(charIDToTypeID('Btom'), charIDToTypeID('#Pxl'), y + height);
+	desc3.putUnitDouble(charIDToTypeID('Rght'), charIDToTypeID('#Pxl'), x + width);
+	desc2.putObject(charIDToTypeID('Shp '), charIDToTypeID('Elps'), desc3);
+	desc1.putObject(charIDToTypeID('Usng'), stringIDToTypeID('contentLayer'), desc2);
+	executeAction(charIDToTypeID('Mk  '), desc1, DialogModes.NO);
 	// =======================================================
 	
 	//Restore old foreground color:
@@ -108,40 +91,19 @@ Ellipse.prototype.setScale = function (scale) {
 	*/
 	
 	// =======================================================
-	var idTrnf = charIDToTypeID( "Trnf" );
-		var desc67 = new ActionDescriptor();
-		var idnull = charIDToTypeID( "null" );
-			var ref27 = new ActionReference();
-			var idLyr = charIDToTypeID( "Lyr " );
-			var idOrdn = charIDToTypeID( "Ordn" );
-			var idTrgt = charIDToTypeID( "Trgt" );
-			ref27.putEnumerated( idLyr, idOrdn, idTrgt );
-		desc67.putReference( idnull, ref27 );
-		var idFTcs = charIDToTypeID( "FTcs" );
-		var idQCSt = charIDToTypeID( "QCSt" );
-		var idQcsa = charIDToTypeID( "Qcsa" );
-		desc67.putEnumerated( idFTcs, idQCSt, idQcsa );
-		var idOfst = charIDToTypeID( "Ofst" );
-			var desc68 = new ActionDescriptor();
-			var idHrzn = charIDToTypeID( "Hrzn" );
-			var idPxl = charIDToTypeID( "#Pxl" );
-			desc68.putUnitDouble( idHrzn, idPxl, 0.000000 );
-			var idVrtc = charIDToTypeID( "Vrtc" );
-			var idPxl = charIDToTypeID( "#Pxl" );
-			desc68.putUnitDouble( idVrtc, idPxl, 0.000000 );
-		var idOfst = charIDToTypeID( "Ofst" );
-		desc67.putObject( idOfst, idOfst, desc68 );
-		var idWdth = charIDToTypeID( "Wdth" );
-		var idPrc = charIDToTypeID( "#Prc" );
-		desc67.putUnitDouble( idWdth, idPrc, scale );
-		var idHght = charIDToTypeID( "Hght" );
-		var idPrc = charIDToTypeID( "#Prc" );
-		desc67.putUnitDouble( idHght, idPrc, scale );
-		var idIntr = charIDToTypeID( "Intr" );
-		var idIntp = charIDToTypeID( "Intp" );
-		var idbicubicAutomatic = stringIDToTypeID( "bicubicAutomatic" );
-		desc67.putEnumerated( idIntr, idIntp, idbicubicAutomatic );
-	executeAction( idTrnf, desc67, DialogModes.NO );
+	var desc4 = new ActionDescriptor(),
+	    desc5 = new ActionDescriptor(),
+	    ref2 = new ActionReference();
+	ref2.putEnumerated(charIDToTypeID('Lyr '), charIDToTypeID('Ordn'), charIDToTypeID('Trgt'));
+	desc4.putReference(charIDToTypeID('null'), ref2);
+	desc4.putEnumerated(charIDToTypeID('FTcs'), charIDToTypeID('QCSt'), charIDToTypeID('Qcsa'));
+	desc5.putUnitDouble(charIDToTypeID('Hrzn'), charIDToTypeID('#Pxl'), 0);
+	desc5.putUnitDouble(charIDToTypeID('Vrtc'), charIDToTypeID('#Pxl'), 0);
+	desc4.putObject(charIDToTypeID('Ofst'), charIDToTypeID('Ofst'), desc5);
+	desc4.putUnitDouble(charIDToTypeID('Wdth'), charIDToTypeID('#Prc'), scale);
+	desc4.putUnitDouble(charIDToTypeID('Hght'), charIDToTypeID('#Prc'), scale);
+	desc4.putEnumerated(charIDToTypeID('Intr'), charIDToTypeID('Intp'), stringIDToTypeID('bicubicAutomatic'));
+	executeAction(charIDToTypeID('Trnf'), desc4, DialogModes.NO);
 	
 	app.activeDocument.activeLayer = tmpLayer;
 }
@@ -154,13 +116,9 @@ Ellipse.prototype.setColor = function (color) {
 	app.foregroundColor = color;
 	
 	// =======================================================
-	var idFl = charIDToTypeID( "Fl  " );
-		var desc62 = new ActionDescriptor();
-		var idUsng = charIDToTypeID( "Usng" );
-		var idFlCn = charIDToTypeID( "FlCn" );
-		var idFrgC = charIDToTypeID( "FrgC" );
-		desc62.putEnumerated( idUsng, idFlCn, idFrgC );
-	executeAction( idFl, desc62, DialogModes.NO );
+	var desc6 = new ActionDescriptor();
+	desc6.putEnumerated(charIDToTypeID('Usng'), charIDToTypeID('FlCn'), charIDToTypeID('FrgC'));
+	executeAction(charIDToTypeID('Fl  '), desc6, DialogModes.NO);
 	
 	app.activeDocument.activeLayer = tmpLayer;
 	app.foregroundColor = tmpColor;
